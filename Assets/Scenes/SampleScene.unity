@@ -357,15 +357,61 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac72f0eb54d6a4408891180e14b2e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
   type: 1
   angle: 0
   bulletLife: 1
   speed: 2
   magnitude: 1
   frequency: 10
-  curveStrength: 1
-  curveType: 3
-  curveRate: 3
+  linearVelocity: {x: 0.5, y: 0}
+  radii: {x: 2, y: 3}
+--- !u!1 &1181839763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1181839765}
+  - component: {fileID: 1181839764}
+  m_Layer: 0
+  m_Name: BulletPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1181839764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181839763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b599e864bf4c49d79399d5f8f043c32f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxPoolSize: 1000
+  bulletPrefab: {fileID: 4393334075805053696, guid: be949b4df9f699845a32e285922cf68a, type: 3}
+--- !u!4 &1181839765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181839763}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1604013651
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,3 +581,4 @@ SceneRoots:
   - {fileID: 619394802}
   - {fileID: 1604013653}
   - {fileID: 4678989226208519048}
+  - {fileID: 1181839765}
