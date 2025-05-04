@@ -1,9 +1,9 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Bullet
+namespace Weapon
 {
-    public class BulletBase : MonoBehaviour
+    public class BulletBase : WeaponBase
     {
         public enum BulletType
         {

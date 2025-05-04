@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Bullet
+namespace Weapon
 {
     public class BulletSpawner : MonoBehaviour
     {
