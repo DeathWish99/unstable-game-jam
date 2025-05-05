@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Weapon
@@ -19,6 +22,18 @@ namespace Weapon
             
         }
 
+        public GameObject GetLastBulletAndRemove()
+        {
+            var bullet = bullets.Last();
+            bullets.Remove(bullet);
+            return bullet;
+        }
+
+        public void AddBulletsToPool(HashSet<GameObject> bulletsParam)
+        {
+            bullets.AddRange(bulletsParam);
+        }
+        
         private void InstantiateBulletsInPool()
         {
             for (int i = 0; i < maxPoolSize; i++)

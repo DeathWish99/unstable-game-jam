@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -5,48 +6,39 @@ namespace Weapon
 {
     public class BulletBase : WeaponBase
     {
+        public float bulletLife = 1f;
+        private float bulletLifeTimer = 0f;
         public enum BulletType
         {
             Straight,
             Curved,
             ZigZag
         }
-        public BulletType type;
-        [SerializeField]
-        private int angle = 0;
+        private BulletType type;
         
-        [SerializeField]
-        private float bulletLife = 1f;
-        [SerializeField]
         private float speed = 1f;
         
         //Zig Zag
-        [HideInInspector]
-        public float magnitude = 0f; //Size of sine movement
-        [HideInInspector]
-        public float frequency = 0f; //Speed of sine movement
+        private float magnitude = 0f; //Size of sine movement
 
         //Curved
-        [HideInInspector]
-        [Tooltip("Controls the direction/speed the spiral translates")]
-        public Vector2 linearVelocity = new Vector2(0.5f, 0f);
+        private Vector2 linearVelocity = new Vector2(0.5f, 0f); // Controls lateral circular motion
     
-        [HideInInspector]
-        [Tooltip("Controls the radius of the circular motion for X/Y axis.")]
-        public Vector2 radii = new Vector2(2f, 3f);
+        private Vector2 radii = new Vector2(2f, 3f); // The size of the circular movement of the bullet
         
         private Vector2 spawnPoint;
         private Vector2 spawnDirection;
         private float timer;
         
         public bool isTypeZigZagOrCurved => type == BulletType.ZigZag || type == BulletType.Curved;
-        
+
+        private void Awake()
+        {
+        }
+
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            spawnPoint = transform.position;
-            spawnDirection = transform.up;
-            transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
         // Update is called once per frame
@@ -54,6 +46,7 @@ namespace Weapon
         {
             timer += Time.deltaTime;
             transform.position = Movement();
+            CheckTimerAndSetActiveFalse();
         }
 
         private Vector2 Movement()
@@ -67,42 +60,41 @@ namespace Weapon
                 case BulletType.Curved:
                     var curveAngle = speed * timer;
                     var pos = linearVelocity * timer;
-                    return pos + new Vector2(Mathf.Cos(curveAngle) * radii.x, Mathf.Sin(curveAngle) * radii.y);
+                    return pos + new Vector2(Mathf.Cos(curveAngle) * radii.x * spawnDirection.x + spawnPoint.x, Mathf.Sin(curveAngle) * radii.y * spawnDirection.y + spawnPoint.y);
                 case BulletType.ZigZag:
-                    return new Vector2(Mathf.Sin(Time.time * frequency) * magnitude, y+spawnPoint.y);
+                    return new Vector2(Mathf.Sin(x + spawnPoint.x) * magnitude, y+spawnPoint.y);
                 default:
                     return Vector2.zero;
             }
         }
 
-        public void SetRotation(int angleParam)
+        public void SetProperties(BulletType bulletType, int angle, float speed, float magnitude, Vector2 linearVelocity, Vector2 radii)
         {
-            this.angle = angleParam;
-        }
-    }
-
-    [CustomEditor(typeof(BulletBase))]
-    public class Bullet_Editor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
-            var script = (BulletBase)target;
-
-            if (!script.isTypeZigZagOrCurved)
-                return;
+            this.type = bulletType;
+            this.speed = speed;
+            this.magnitude = magnitude;
+            this.linearVelocity = linearVelocity;
+            this.radii = radii;
             
-            if(script.type == BulletBase.BulletType.ZigZag)
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        }
+
+        private void CheckTimerAndSetActiveFalse()
+        {
+            bulletLifeTimer -= Time.deltaTime;
+            if (bulletLifeTimer <= 0)
             {
-                script.magnitude = EditorGUILayout.FloatField("Magnitude", script.magnitude);
-                script.frequency = EditorGUILayout.FloatField("Frequency", script.frequency);
-                
+                this.gameObject.SetActive(false);
             }
-            else
-            {
-                script.linearVelocity = EditorGUILayout.Vector2Field("Linear Velocity", script.linearVelocity);
-                script.radii = EditorGUILayout.Vector2Field("Radii", script.radii);
-            }
+        }
+
+        private void OnEnable()
+        {
+            bulletLifeTimer = bulletLife;
+            this.transform.position = transform.parent.position;
+            spawnPoint = transform.position;
+            spawnDirection = transform.up;
+            timer = 0f;
         }
     }
 }
