@@ -19,6 +19,7 @@ namespace Entities
     public abstract class Entity : MonoBehaviour
     {
         public float health;
+        public float damage;
         public float bulletSpawnInterval;
         
         public List<SpawnerProperty> spawnerProps = new List<SpawnerProperty>();
@@ -30,7 +31,7 @@ namespace Entities
             InstantiateBulletSpawnersInLocation();
         }
 
-        public virtual void Shoot()
+        protected virtual void Shoot()
         {
             
         }

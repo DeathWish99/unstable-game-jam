@@ -17,23 +17,23 @@ public class PlayerController : Entity
     void Update()
     {
         transform.position += new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * (speed * Time.deltaTime);
-        bulletSpawnTimer -= Time.deltaTime;
-        if (Input.GetKey(KeyCode.Z))
-        {
-            Shoot();
-        }
+        Shoot();
     }
 
-    public override void Shoot()
+    protected override void Shoot()
     {
-        if (bulletSpawnTimer > 0) return;
-
-        bulletSpawnTimer = bulletSpawnInterval;
+        bulletSpawnTimer -= Time.deltaTime;
         
-        foreach (var spawner in bulletSpawners)
+        if (Input.GetKey(KeyCode.Z))
         {
-            spawner.ShootFromLocalPool();
-        }
+            if (bulletSpawnTimer > 0) return;
+
+            bulletSpawnTimer = bulletSpawnInterval;
         
+            foreach (var spawner in bulletSpawners)
+            {
+                spawner.ShootFromLocalPool();
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Weapon
         public int bulletCount = 100;
         
         [HideInInspector]
-        public int angle = 0;
+        public float angle = 0;
         
         public float bulletLife = 1f;
         public float speed = 1f;

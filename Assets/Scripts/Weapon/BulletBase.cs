@@ -68,7 +68,7 @@ namespace Weapon
             }
         }
 
-        public void SetProperties(BulletType bulletType, int angle, float speed, float magnitude, Vector2 linearVelocity, Vector2 radii)
+        public void SetProperties(BulletType bulletType, float angle, float speed, float magnitude, Vector2 linearVelocity, Vector2 radii)
         {
             this.type = bulletType;
             this.speed = speed;

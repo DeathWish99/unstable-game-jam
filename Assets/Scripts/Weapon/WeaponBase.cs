@@ -8,12 +8,19 @@ public abstract class WeaponBase : MonoBehaviour, IDamage
     public float Damage { get => damage; set => damage = value; }
 
     protected float dotRate;
-    protected enum DamageType
+    public enum DamageType
     {
         Full,
         DOT
     }
     protected DamageType damageType;
+
+    public enum ShotFrom
+    {
+        Player,
+        Enemy
+    }
+    protected ShotFrom shotFrom;
     
     public virtual float DealDamage(float damage)
     {
