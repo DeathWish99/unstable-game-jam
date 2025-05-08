@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8275956428931927914}
   - component: {fileID: -4030805488110015971}
   m_Layer: 0
-  m_Name: BasicBulletSpawner
+  m_Name: ZigZagSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,12 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71772126b8614245804631c9480024e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletType: 0
+  bulletType: 2
   bulletCount: 100
   angle: 0
   bulletLife: 5
   speed: 5
-  magnitude: 1
+  magnitude: 3
   frequency: 2
   linearVelocity: {x: 0, y: 1}
   radii: {x: 2, y: 3}

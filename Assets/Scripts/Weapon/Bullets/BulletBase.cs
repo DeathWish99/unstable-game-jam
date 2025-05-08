@@ -62,7 +62,7 @@ namespace Weapon
                     var pos = linearVelocity * timer;
                     return pos + new Vector2(Mathf.Cos(curveAngle) * radii.x * spawnDirection.x + spawnPoint.x, Mathf.Sin(curveAngle) * radii.y * spawnDirection.y + spawnPoint.y);
                 case BulletType.ZigZag:
-                    return new Vector2(Mathf.Sin(x + spawnPoint.x) * magnitude, y+spawnPoint.y);
+                    return new Vector2(spawnPoint.x + spawnDirection.x * (Mathf.Sin(timer * speed) * magnitude), y + spawnPoint.y);
                 default:
                     return Vector2.zero;
             }

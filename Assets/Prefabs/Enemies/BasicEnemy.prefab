@@ -107,6 +107,9 @@ MonoBehaviour:
   - spawnerLocation: {x: 0, y: -0.6}
     spawnerAngle: 180
     spawnerPrefab: {fileID: 1187180258767800819, guid: 11355c31834207746a2d2773146ba32b, type: 3}
+  - spawnerLocation: {x: 1, y: -0.6}
+    spawnerAngle: 180
+    spawnerPrefab: {fileID: 1187180258767800819, guid: 9cb36fd4c78a5c34daa5495961c83fc2, type: 3}
   stats:
     directions:
     - {x: 0.3, y: -0.1, z: 0}
