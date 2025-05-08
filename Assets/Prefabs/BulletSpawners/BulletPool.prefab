@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6590176733934093294
+--- !u!1 &168359434187687573
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5084145013023506502}
-  - component: {fileID: 9043202369224604995}
+  - component: {fileID: 9006450844164057635}
+  - component: {fileID: 2782965872915844511}
   m_Layer: 0
-  m_Name: LevelConductor
-  m_TagString: Untagged
+  m_Name: BulletPool
+  m_TagString: BulletPool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5084145013023506502
+--- !u!4 &9006450844164057635
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6590176733934093294}
+  m_GameObject: {fileID: 168359434187687573}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5713525, y: 1.236639, z: -0.080360465}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9043202369224604995
+--- !u!114 &2782965872915844511
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6590176733934093294}
+  m_GameObject: {fileID: 168359434187687573}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a5645df8812257449d6513408ff49f1, type: 3}
+  m_Script: {fileID: 11500000, guid: b599e864bf4c49d79399d5f8f043c32f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyLoaders:
-  - {fileID: 8928206095817241909, guid: 9e7e7929288adc24aba8daac8c8e1553, type: 3}
-  - {fileID: 8928206095817241909, guid: 9e7e7929288adc24aba8daac8c8e1553, type: 3}
+  maxPoolSize: 1000
+  bulletPrefab: {fileID: 4393334075805053696, guid: be949b4df9f699845a32e285922cf68a, type: 3}

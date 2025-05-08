@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Weapon
 {
-    public class BulletSpawner : MonoBehaviour
+    public class BulletSpawner : MonoBehaviour, ISpawner
     {
         public BulletBase.BulletType bulletType;
         public int bulletCount = 100;
@@ -57,7 +57,7 @@ namespace Weapon
             GrabObjectsFromPool();
         }
 
-        public void ShootFromLocalPool()
+        public void ShootWeaponFromSpawner()
         {
             loadedBulletComponent.SetProperties(
                 bulletType,

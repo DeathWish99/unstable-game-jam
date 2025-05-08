@@ -72,9 +72,9 @@ namespace Entities.Enemy
                 {
                     bulletSpawnTimer = bulletSpawnInterval;
     
-                    foreach (var spawner in bulletSpawners)
+                    foreach (var spawner in weaponSpawners)
                     {
-                        spawner.ShootFromLocalPool();
+                        spawner.ShootWeaponFromSpawner();
                     }
                 }
                 else

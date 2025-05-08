@@ -30,9 +30,9 @@ public class PlayerController : Entity
 
             bulletSpawnTimer = bulletSpawnInterval;
         
-            foreach (var spawner in bulletSpawners)
+            foreach (var spawner in weaponSpawners)
             {
-                spawner.ShootFromLocalPool();
+                spawner.ShootWeaponFromSpawner();
             }
         }
     }

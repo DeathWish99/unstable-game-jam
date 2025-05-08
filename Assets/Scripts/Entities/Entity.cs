@@ -24,11 +24,12 @@ namespace Entities
         
         public List<SpawnerProperty> spawnerProps = new List<SpawnerProperty>();
         
-        protected List<BulletSpawner> bulletSpawners =  new List<BulletSpawner>();
+        protected List<ISpawner> weaponSpawners =  new List<ISpawner>();
         protected float bulletSpawnTimer = 0f;
         public virtual void Start()
         {
-            InstantiateBulletSpawnersInLocation();
+            InstantiateWeaponSpawnersInLocation();
+            SetDamageToSpawners();
         }
 
         protected virtual void Shoot()
@@ -36,20 +37,23 @@ namespace Entities
             
         }
 
-        private void SetDamageToSpawners()
+        protected void SetDamageToSpawners()
         {
-            
+            foreach (var bulletSpawner in weaponSpawners)
+            {
+                bulletSpawner.SetDamage(damage);
+            }
         }
         
-        //Instantiate bulletspawners in designated location relative to parent entity
-        private void InstantiateBulletSpawnersInLocation()
+        //Instantiate weapon spawners in designated location relative to parent entity
+        private void InstantiateWeaponSpawnersInLocation()
         {
             foreach (var spawnerProp in spawnerProps)
             {
                 var spawnerObj = Instantiate(spawnerProp.spawnerPrefab, transform);
                 spawnerObj.transform.position = (Vector2)transform.position + spawnerProp.spawnerLocation;
                 spawnerObj.GetComponent<BulletSpawner>().angle = spawnerProp.spawnerAngle;
-                bulletSpawners.Add(spawnerObj.GetComponent<BulletSpawner>());
+                weaponSpawners.Add(spawnerObj.GetComponent<ISpawner>());
             }
         }
     }
