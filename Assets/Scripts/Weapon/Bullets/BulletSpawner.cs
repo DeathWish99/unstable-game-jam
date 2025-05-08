@@ -44,9 +44,14 @@ namespace Weapon
         {
             get => loadedBullet.GetComponent<BulletBase>();
         }
+
+        private List<BulletBase> bulletComponents
+        {
+            get => bullets.Select(x => x.GetComponent<BulletBase>()).ToList();
+        }
         
         private BulletPool bulletPool;
-        private void Start()
+        private void Awake()
         {
             bulletPool = GameObject.FindGameObjectWithTag("BulletPool").GetComponent<BulletPool>();
             GrabObjectsFromPool();
@@ -63,6 +68,14 @@ namespace Weapon
                 radii
                 );
             loadedBullet.SetActive(true);
+        }
+
+        public void SetDamage(float damage)
+        {
+            foreach (var bullet in bulletComponents)
+            {
+                bullet.SetBulletDamage(damage);
+            }
         }
         
         private void GrabObjectsFromPool()

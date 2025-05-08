@@ -35,6 +35,11 @@ namespace Entities
         {
             
         }
+
+        private void SetDamageToSpawners()
+        {
+            
+        }
         
         //Instantiate bulletspawners in designated location relative to parent entity
         private void InstantiateBulletSpawnersInLocation()

@@ -4,6 +4,6 @@
     {
        public float Damage { get; set; }
        
-       public float DealDamage(float damage);
+       public float DealDamage(float damage, bool isPlayer);
     }
 }

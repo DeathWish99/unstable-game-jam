@@ -100,12 +100,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972088b96a594e20b10524856f35d392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats:
-    health: 0
-    damage: 0
-    direction: {x: 0, y: 0}
-    movementSpeed: 0
-    bulletSpeed: 0
-    bulletInterval: 0
-    delayTimer: 0
-    bulletsToShoot: 0
+  health: 30
+  damage: 5
+  bulletSpawnInterval: 0.1
+  spawnerProps:
+  - spawnerLocation: {x: 0, y: -0.6}
+    spawnerAngle: 180
+    spawnerPrefab: {fileID: 1187180258767800819, guid: 11355c31834207746a2d2773146ba32b, type: 3}
+  stats:
+    directions:
+    - {x: 0.3, y: -0.1, z: 0}
+    - {x: -0.3, y: -0.1, z: 0}
+    movementSpeed: 3
+    bulletDelayTimer: 2
+    bulletShootingTimer: 3
+    directionTimer: 3

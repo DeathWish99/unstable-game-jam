@@ -3,7 +3,6 @@ using UnityEngine;
 
 public abstract class WeaponBase : MonoBehaviour, IDamage
 {
-    [SerializeField]
     protected float damage;
     public float Damage { get => damage; set => damage = value; }
 
@@ -22,7 +21,7 @@ public abstract class WeaponBase : MonoBehaviour, IDamage
     }
     protected ShotFrom shotFrom;
     
-    public virtual float DealDamage(float damage)
+    public virtual float DealDamage(float damage, bool isPlayer)
     {
         switch (damageType)
         {

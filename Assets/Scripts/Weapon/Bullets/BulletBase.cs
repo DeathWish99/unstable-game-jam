@@ -79,6 +79,10 @@ namespace Weapon
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
 
+        public void SetBulletDamage(float damage)
+        {
+            this.damage = damage;
+        }
         private void CheckTimerAndSetActiveFalse()
         {
             bulletLifeTimer -= Time.deltaTime;
