@@ -11,11 +11,13 @@ public class PlayerController : Entity
     public override void Start()
     {
         base.Start();
+        entityType = EntityType.Player;
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
         transform.position += new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * (speed * Time.deltaTime);
         Shoot();
     }
@@ -32,7 +34,7 @@ public class PlayerController : Entity
         
             foreach (var spawner in weaponSpawners)
             {
-                spawner.ShootWeaponFromSpawner();
+                spawner.ShootWeaponFromSpawner(entityType);
             }
         }
     }

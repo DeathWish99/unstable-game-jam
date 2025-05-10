@@ -27,10 +27,12 @@ namespace Entities.Enemy
             _bulletShootingTimer = stats.bulletShootingTimer;
             _directionTimer = stats.directionTimer;
             _directionCount = 0;
+            entityType = EntityType.Enemy;
         }
 
-        private void Update()
+        protected override void Update()
         {
+            base.Update();
             PerformMovement();
             Shoot();
         }
@@ -74,7 +76,7 @@ namespace Entities.Enemy
     
                     foreach (var spawner in weaponSpawners)
                     {
-                        spawner.ShootWeaponFromSpawner();
+                        spawner.ShootWeaponFromSpawner(entityType);
                     }
                 }
                 else

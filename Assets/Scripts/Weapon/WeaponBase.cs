@@ -1,3 +1,4 @@
+using System;
 using Bullet;
 using UnityEngine;
 
@@ -5,23 +6,21 @@ public abstract class WeaponBase : MonoBehaviour, IDamage
 {
     protected float damage;
     public float Damage { get => damage; set => damage = value; }
+    
+    protected bool isFromPlayer;
+    public bool IsFromPlayer { get => isFromPlayer; set => isFromPlayer = value; }
 
+    [SerializeField]
     protected float dotRate;
     public enum DamageType
     {
         Full,
         DOT
     }
+    [SerializeField]
     protected DamageType damageType;
-
-    public enum ShotFrom
-    {
-        Player,
-        Enemy
-    }
-    protected ShotFrom shotFrom;
     
-    public virtual float DealDamage(float damage, bool isPlayer)
+    public virtual float DealDamage()
     {
         switch (damageType)
         {
@@ -32,5 +31,10 @@ public abstract class WeaponBase : MonoBehaviour, IDamage
             default:
                 return damage;
         }
+    }
+
+    protected virtual void OnCollisionEnter2D(Collision2D other)
+    {
+        throw new NotImplementedException();
     }
 }

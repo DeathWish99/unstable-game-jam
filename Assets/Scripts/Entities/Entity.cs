@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Bullet;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -16,6 +17,11 @@ namespace Entities
         public int spawnerAngle;
         public GameObject spawnerPrefab;
     }
+    public enum EntityType
+    {
+        Player,
+        Enemy
+    }
     public abstract class Entity : MonoBehaviour
     {
         public float health;
@@ -26,15 +32,23 @@ namespace Entities
         
         protected List<ISpawner> weaponSpawners =  new List<ISpawner>();
         protected float bulletSpawnTimer = 0f;
+        [SerializeField]
+        protected EntityType entityType;
+
         public virtual void Start()
         {
             InstantiateWeaponSpawnersInLocation();
             SetDamageToSpawners();
         }
-
+        
         protected virtual void Shoot()
         {
             
+        }
+
+        protected virtual void Update()
+        {
+            CheckDeath();
         }
 
         protected void SetDamageToSpawners()
@@ -42,6 +56,13 @@ namespace Entities
             foreach (var bulletSpawner in weaponSpawners)
             {
                 bulletSpawner.SetDamage(damage);
+            }
+        }
+        protected virtual void CheckDeath()
+        {
+            if (health <= 0)
+            {
+                Destroy(gameObject);
             }
         }
         
@@ -54,6 +75,29 @@ namespace Entities
                 spawnerObj.transform.position = (Vector2)transform.position + spawnerProp.spawnerLocation;
                 spawnerObj.GetComponent<BulletSpawner>().angle = spawnerProp.spawnerAngle;
                 weaponSpawners.Add(spawnerObj.GetComponent<ISpawner>());
+            }
+        }
+
+        protected virtual void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.TryGetComponent(out IDamage damage))
+            {
+                switch (entityType)
+                {
+                    case EntityType.Player:
+                        if (damage.IsFromPlayer)
+                            return;
+                        health -= damage.DealDamage();
+                        break;
+                    case EntityType.Enemy:
+                        if (!damage.IsFromPlayer)
+                            return;
+                        health -= damage.DealDamage();
+                        break;
+                    default:
+                        return;
+                }
+                other.gameObject.SetActive(false);
             }
         }
     }

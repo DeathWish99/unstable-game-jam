@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Entities;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -39,7 +40,7 @@ namespace Weapon
         {
             get => bullets.LastOrDefault(x => x.activeSelf == false);
         }
-
+        
         private BulletBase loadedBulletComponent
         {
             get => loadedBullet.GetComponent<BulletBase>();
@@ -57,7 +58,7 @@ namespace Weapon
             GrabObjectsFromPool();
         }
 
-        public void ShootWeaponFromSpawner()
+        public void ShootWeaponFromSpawner(EntityType entityType)
         {
             loadedBulletComponent.SetProperties(
                 bulletType,
@@ -65,7 +66,9 @@ namespace Weapon
                 speed,
                 magnitude,
                 linearVelocity,
-                radii
+                radii,
+                entityType,
+                this.transform.position
                 );
             loadedBullet.SetActive(true);
         }
@@ -84,19 +87,18 @@ namespace Weapon
             for (int i = 0; i < bulletCount; i++)
             {
                 var bullet = bulletPool.GetLastBulletAndRemove();
-                bullet.transform.SetParent(transform);
                 bullets.Add(bullet);
             }
         }
 
         private void ReturnBulletsToPool()
         {
-            foreach (var bullet in bullets)
+            var inactiveBullets = bullets.Where(x => !x.activeSelf);
+            foreach (var bullet in inactiveBullets)
             {
                 if (bulletPool.IsDestroyed() || bulletPool.IsUnityNull()) return;
                 if (bullet == null || bullet.IsDestroyed()) continue;
                 bullet.SetActive(false);
-                bullet.transform.SetParent(bulletPool.transform);
             }
             bulletPool.AddBulletsToPool(bullets);
         }

@@ -3,7 +3,9 @@
     public interface IDamage
     {
        public float Damage { get; set; }
+       public bool IsFromPlayer { get; set; }
+       public float DealDamage();
        
-       public float DealDamage(float damage, bool isPlayer);
+       
     }
 }

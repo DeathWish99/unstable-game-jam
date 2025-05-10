@@ -1,4 +1,5 @@
 using System;
+using Entities;
 using UnityEditor;
 using UnityEngine;
 
@@ -68,13 +69,15 @@ namespace Weapon
             }
         }
 
-        public void SetProperties(BulletType bulletType, float angle, float speed, float magnitude, Vector2 linearVelocity, Vector2 radii)
+        public void SetProperties(BulletType bulletType, float angle, float speed, float magnitude, Vector2 linearVelocity, Vector2 radii, EntityType entityType, Vector3 spawnerPos)
         {
             this.type = bulletType;
             this.speed = speed;
             this.magnitude = magnitude;
             this.linearVelocity = linearVelocity;
             this.radii = radii;
+            this.isFromPlayer = entityType == EntityType.Player;
+            this.transform.position = spawnerPos;
             
             transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
@@ -95,7 +98,6 @@ namespace Weapon
         private void OnEnable()
         {
             bulletLifeTimer = bulletLife;
-            this.transform.position = transform.parent.position;
             spawnPoint = transform.position;
             spawnDirection = transform.up;
             timer = 0f;

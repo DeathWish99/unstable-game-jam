@@ -1,8 +1,10 @@
-﻿namespace Weapon
+﻿using Entities;
+
+namespace Weapon
 {
     public interface ISpawner
     {
-        void ShootWeaponFromSpawner();
+        void ShootWeaponFromSpawner(EntityType entityType);
         void SetDamage(float damage);
     }
 }
