@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5833411390576181953}
   - component: {fileID: 8444570142438520223}
   m_Layer: 0
-  m_Name: BasicEnemy
+  m_Name: BE_SF_VDM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 8881303762798436949}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.37, y: 3.48, z: 0}
+  m_LocalPosition: {x: 15, y: 3.48, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104,17 +104,13 @@ MonoBehaviour:
   damage: 5
   bulletSpawnInterval: 0.5
   spawnerProps:
-  - spawnerLocation: {x: 0, y: -0.6}
-    spawnerAngle: 180
+  - spawnerLocation: {x: 0, y: 0}
+    spawnerAngle: 90
     spawnerPrefab: {fileID: 1187180258767800819, guid: 11355c31834207746a2d2773146ba32b, type: 3}
-  - spawnerLocation: {x: 1, y: -0.6}
-    spawnerAngle: 180
-    spawnerPrefab: {fileID: 1187180258767800819, guid: 9cb36fd4c78a5c34daa5495961c83fc2, type: 3}
   stats:
     directions:
-    - {x: 0.3, y: -0.1, z: 0}
-    - {x: -0.3, y: -0.1, z: 0}
+    - {x: 0, y: -0.5, z: 0}
     movementSpeed: 3
     bulletDelayTimer: 2
-    bulletShootingTimer: 3
-    directionTimer: 3
+    bulletShootingTimer: 5
+    directionTimer: 1
