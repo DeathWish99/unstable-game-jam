@@ -93,10 +93,10 @@ namespace Weapon
 
         private void ReturnBulletsToPool()
         {
+            if (bulletPool.IsDestroyed() || bulletPool.IsUnityNull()) return;
             var inactiveBullets = bullets.Where(x => !x.activeSelf);
             foreach (var bullet in inactiveBullets)
             {
-                if (bulletPool.IsDestroyed() || bulletPool.IsUnityNull()) return;
                 if (bullet == null || bullet.IsDestroyed()) continue;
                 bullet.SetActive(false);
             }

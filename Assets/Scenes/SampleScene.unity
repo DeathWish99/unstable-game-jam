@@ -366,12 +366,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6528496196648712790, guid: 80edcfd693215ba47a1c1729a37d421b, type: 3}
-      propertyPath: damage
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6528496196648712790, guid: 80edcfd693215ba47a1c1729a37d421b, type: 3}
-      propertyPath: health
-      value: 100
+      propertyPath: bulletSpawnInterval
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6982551528709457193, guid: 80edcfd693215ba47a1c1729a37d421b, type: 3}
       propertyPath: m_Name

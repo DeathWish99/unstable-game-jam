@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyLoaders:
-  - {fileID: 8928206095817241909, guid: 9e7e7929288adc24aba8daac8c8e1553, type: 3}
+  - {fileID: 6154382809522287761, guid: 70ccfcae4fd0bbf4f9feed4afe763289, type: 3}
   - {fileID: 8928206095817241909, guid: 9e7e7929288adc24aba8daac8c8e1553, type: 3}

@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Level;
 using UnityEngine;
 
 public class LevelConductor : MonoBehaviour
@@ -17,17 +19,43 @@ public class LevelConductor : MonoBehaviour
         InstantiateLoader();
     }
 
+    private void Update()
+    {
+        CheckLevel();
+    }
+
     public void LoadNextLevel()
     {
+        Debug.Log("Loading next level");
         activatedEnemyLoaders[_levelCount].SetActive(false);
         _levelCount++;
         InstantiateLoader();
     }
 
+    private void CheckLevel()
+    {
+        if (activatedEnemyLoaders[_levelCount].GetComponent<EnemyLoader>().isAllEnemiesDestroyed)
+        {
+            if (_levelCount == enemyLoaders.Count - 1)
+            {
+                return;
+            }
+            LoadNextLevel();
+        }
+    }
+
     private void InstantiateLoader()
     {
-        Instantiate(enemyLoaders[_levelCount]);
-        activatedEnemyLoaders.Add(enemyLoaders[_levelCount]);
+        Debug.Log(_levelCount);
+        if (_levelCount < enemyLoaders.Count)
+        {
+            activatedEnemyLoaders.Add(Instantiate(enemyLoaders[_levelCount]));
+        }
+    }
+
+    void WinCondition()
+    {
+        
     }
     
     // private void MoveEnemiesToEdgeOfMap()
