@@ -34,11 +34,15 @@ namespace Entities
         protected float bulletSpawnTimer = 0f;
         [SerializeField]
         protected EntityType entityType;
-
+        
+        
+        protected float xMin, xMax;
+        protected float yMin, yMax;
         public virtual void Start()
         {
             InstantiateWeaponSpawnersInLocation();
             SetDamageToSpawners();
+            SetMaxBasedOnCameraBounds();
         }
         
         protected virtual void Shoot()
@@ -64,6 +68,21 @@ namespace Entities
             {
                 Destroy(gameObject);
             }
+        }
+
+        private void SetMaxBasedOnCameraBounds()
+        {
+            
+            var spriteSize = GetComponent<SpriteRenderer>().bounds.size.x * .5f; // Working with a simple box here, adapt to you necessity
+            var cam = Camera.main;// Camera component to get their size, if this change in runtime make sure to update values
+            var camHeight = cam.orthographicSize;
+            var camWidth = cam.orthographicSize * cam.aspect;
+
+            yMin = -camHeight + spriteSize; // lower bound
+            yMax = camHeight - spriteSize; // upper bound
+        
+            xMin = -camWidth + spriteSize; // left bound
+            xMax = camWidth - spriteSize; // right bound 
         }
         
         //Instantiate weapon spawners in designated location relative to parent entity

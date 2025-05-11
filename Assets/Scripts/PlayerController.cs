@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerController : Entity
 {
     public float speed;
-
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Start()
     {
@@ -18,7 +18,16 @@ public class PlayerController : Entity
     protected override void Update()
     {
         base.Update();
-        transform.position += new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0) * (speed * Time.deltaTime);
+        
+        var ver = Input.GetAxis("Vertical");
+        var hor = Input.GetAxis("Horizontal");
+        var direction = new Vector2(hor, ver).normalized;
+        direction *= speed * Time.deltaTime; // apply speed
+
+        var xValidPosition = Mathf.Clamp(transform.position.x + direction.x, xMin, xMax);
+        var yValidPosition = Mathf.Clamp(transform.position.y + direction.y, yMin, yMax);
+
+        transform.position = new Vector3(xValidPosition, yValidPosition, 0f);
         Shoot();
     }
 

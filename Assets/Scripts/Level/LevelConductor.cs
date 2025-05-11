@@ -8,15 +8,20 @@ public class LevelConductor : MonoBehaviour
 {
     public List<GameObject> enemyLoaders;
 
+    public float waveSpawnDelay = 0f;
+
     private List<GameObject> activatedEnemyLoaders;
     private Camera _mainCamera;
     private int _levelCount = 0;
+    private float _waveSpawnDelay;
     void Start()
     {
+        _waveSpawnDelay = waveSpawnDelay;
         activatedEnemyLoaders = new List<GameObject>();
         _mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         enemyLoaders[_levelCount].transform.position = new Vector3(_mainCamera.transform.position.x, _mainCamera.transform.position.y, 0f);
         InstantiateLoader();
+        SetLoaderActive();
     }
 
     private void Update()
@@ -29,7 +34,8 @@ public class LevelConductor : MonoBehaviour
         Debug.Log("Loading next level");
         activatedEnemyLoaders[_levelCount].SetActive(false);
         _levelCount++;
-        InstantiateLoader();
+        _waveSpawnDelay = waveSpawnDelay;
+        SetLoaderActive();
     }
 
     private void CheckLevel()
@@ -40,16 +46,29 @@ public class LevelConductor : MonoBehaviour
             {
                 return;
             }
-            LoadNextLevel();
+            _waveSpawnDelay -= Time.deltaTime;
+            
+            if(_waveSpawnDelay <= 0)
+                LoadNextLevel();
         }
     }
 
     private void InstantiateLoader()
     {
-        Debug.Log(_levelCount);
+        for (int i = 0; i < enemyLoaders.Count; i++)
+        {
+            activatedEnemyLoaders.Add(Instantiate(enemyLoaders[i]));
+            activatedEnemyLoaders[i].SetActive(false);
+        }
+        Debug.Log(activatedEnemyLoaders.Count());
+    }
+
+    private void SetLoaderActive()
+    {
+        
         if (_levelCount < enemyLoaders.Count)
         {
-            activatedEnemyLoaders.Add(Instantiate(enemyLoaders[_levelCount]));
+            activatedEnemyLoaders[_levelCount].SetActive(true);
         }
     }
 

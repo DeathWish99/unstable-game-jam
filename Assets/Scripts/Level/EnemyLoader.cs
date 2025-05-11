@@ -9,7 +9,8 @@ namespace Level
 {
     public class EnemyLoader : MonoBehaviour
     {
-        public List<GameObject> enemies;
+        private List<GameObject> enemies = new List<GameObject>();
+        [HideInInspector]
         public bool isAllEnemiesDestroyed = false;
         private void Awake()
         {
