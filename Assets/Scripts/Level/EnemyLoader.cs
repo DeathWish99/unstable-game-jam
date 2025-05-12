@@ -9,8 +9,7 @@ namespace Level
 {
     public class EnemyLoader : MonoBehaviour
     {
-        private List<GameObject> enemies = new List<GameObject>();
-        [HideInInspector]
+        public List<GameObject> enemies = new List<GameObject>();
         public bool isAllEnemiesDestroyed = false;
         private void Awake()
         {
@@ -21,6 +20,7 @@ namespace Level
         {
             if (enemies.All(x => x.IsDestroyed()))
             {
+                Debug.Log("All enemies destroyed");
                 isAllEnemiesDestroyed = true;
             }
         }

@@ -35,6 +35,7 @@ namespace Entities.Enemy
             base.Update();
             PerformMovement();
             Shoot();
+            DestroyWhenOutOfScreen();
         }
 
         public void PerformMovement()
@@ -59,6 +60,12 @@ namespace Entities.Enemy
                 if(!_hasDirectionRestarted)
                     _directionCount++;
             }
+        }
+
+        public void DestroyWhenOutOfScreen()
+        {
+            if(!this.gameObject.GetComponent<Renderer>().isVisible)
+                Destroy(gameObject);
         }
 
         protected override void Shoot()

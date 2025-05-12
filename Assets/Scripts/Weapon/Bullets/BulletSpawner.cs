@@ -46,6 +46,11 @@ namespace Weapon
             get => loadedBullet.GetComponent<BulletBase>();
         }
 
+        private EntityType parentEntityType
+        {
+            get => this.transform.parent.gameObject.GetComponent<Entity>().entityType;
+        }
+        
         private List<BulletBase> bulletComponents
         {
             get => bullets.Select(x => x.GetComponent<BulletBase>()).ToList();
@@ -86,7 +91,7 @@ namespace Weapon
             
             for (int i = 0; i < bulletCount; i++)
             {
-                var bullet = bulletPool.GetLastBulletAndRemove();
+                var bullet = bulletPool.GetLastBulletAndRemove(parentEntityType);
                 bullets.Add(bullet);
             }
         }
@@ -100,7 +105,7 @@ namespace Weapon
                 if (bullet == null || bullet.IsDestroyed()) continue;
                 bullet.SetActive(false);
             }
-            bulletPool.AddBulletsToPool(bullets);
+            bulletPool.AddBulletsToPool(bullets, parentEntityType);
         }
         private void OnDestroy()
         {

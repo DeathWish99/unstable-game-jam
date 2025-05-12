@@ -255,6 +255,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelConductor
       objectReference: {fileID: 0}
+    - target: {fileID: 9043202369224604995, guid: 020bb4ae5ed8799468f8a848d421be60, type: 3}
+      propertyPath: waveSpawnDelay
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -365,13 +369,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6528496196648712790, guid: 80edcfd693215ba47a1c1729a37d421b, type: 3}
-      propertyPath: bulletSpawnInterval
-      value: 0.25
-      objectReference: {fileID: 0}
     - target: {fileID: 6982551528709457193, guid: 80edcfd693215ba47a1c1729a37d421b, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929482670373983365, guid: 80edcfd693215ba47a1c1729a37d421b, type: 3}
+      propertyPath: m_Size.x
+      value: 0.40375116
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929482670373983365, guid: 80edcfd693215ba47a1c1729a37d421b, type: 3}
+      propertyPath: m_Size.y
+      value: 0.26851925
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929482670373983365, guid: 80edcfd693215ba47a1c1729a37d421b, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0030734092
+      objectReference: {fileID: 0}
+    - target: {fileID: 7929482670373983365, guid: 80edcfd693215ba47a1c1729a37d421b, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.009220436
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

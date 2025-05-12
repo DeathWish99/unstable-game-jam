@@ -45,4 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPoolSize: 10000
-  bulletPrefab: {fileID: 4393334075805053696, guid: be949b4df9f699845a32e285922cf68a, type: 3}
+  enemyBulletPrefab: {fileID: 4393334075805053696, guid: be949b4df9f699845a32e285922cf68a, type: 3}
+  playerBulletPrefab: {fileID: 4393334075805053696, guid: fa650bbc9f561a8458d4c3cfe6d4d930, type: 3}

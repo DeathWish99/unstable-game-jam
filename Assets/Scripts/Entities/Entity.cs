@@ -27,13 +27,12 @@ namespace Entities
         public float health;
         public float damage;
         public float bulletSpawnInterval;
+        public EntityType entityType;
         
         public List<SpawnerProperty> spawnerProps = new List<SpawnerProperty>();
         
         protected List<ISpawner> weaponSpawners =  new List<ISpawner>();
         protected float bulletSpawnTimer = 0f;
-        [SerializeField]
-        protected EntityType entityType;
         
         
         protected float xMin, xMax;
